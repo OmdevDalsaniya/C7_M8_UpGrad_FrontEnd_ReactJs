@@ -4,7 +4,7 @@ import logo from '../../assets/logo.svg';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
     const onClickHandler=()=>{
 
     }
@@ -12,7 +12,11 @@ const Header = () => {
     return(
         <div id="header">
             <img className="logo" src={logo} alt="Logo"/>
-            <Button className="NavButton" variant="contained">Login</Button>
+            {(props.auth) ?
+                <Button className="NavButton" variant="contained">Log Out</Button>
+                :
+                <Button className="NavButton" variant="contained">Log In</Button>
+            }
             <Link to="/BookShow">
                 <Button className="NavButton" variant="contained" color="primary" onClick="onClickHandler">Book Show</Button>
             </Link>
