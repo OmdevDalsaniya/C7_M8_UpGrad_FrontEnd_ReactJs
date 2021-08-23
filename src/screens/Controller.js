@@ -1,9 +1,18 @@
 import React from "react";
-import Header from "../common/header/Header";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "../screens/home/Home";
+import BookShow from '../screens/bookshow/BookShow';
 
 const Controller = () => {
     return(
-        <Header></Header>
+        <Router>
+            <div>
+                <Route exact path="/" render={() => <Home/>} />
+                <Route exact path="/BookShow" render={(props) => <BookShow {...props} />} />
+                <Route exact path="/Movie" render={() =><Home/>}/>
+            </div>
+        </Router>
+
     );
 }
 
