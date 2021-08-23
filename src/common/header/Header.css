@@ -1,0 +1,23 @@
+#header {
+    background-color: #222;
+    height: 36px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 32px;
+    padding-left: 16px;
+}
+
+.logo {
+    background-color: #ff7f7f;
+    height: 35px;
+    animation: rotation 8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    float: left;
+}
+
+.NavButton {
+    float: right;
+    margin-right:16px;
+}
