@@ -15,7 +15,7 @@ const Header = (props) => {
             {(props.auth) ?
                 <Button className="NavButton" variant="contained">Log Out</Button>
                 :
-                <Button className="NavButton" variant="contained">Log In</Button>
+                <Button className="NavButton" variant="contained" onClick={()=> props.handlePopUp(true)}>Log In</Button>
             }
             <Link to="/BookShow">
                 <Button className="NavButton" variant="contained" color="primary" onClick="onClickHandler">Book Show</Button>
