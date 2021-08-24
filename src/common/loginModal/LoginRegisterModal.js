@@ -3,12 +3,13 @@ import { Tabs, Modal } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import { useState } from "react";
 import './LoginRegisterModal.css';
-
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
 
 const LoginRegisterModal = () => {
 
     const [value, setValue] = useState(1);
-    const [panel, setActive] = useState(true);
+    const [panel, setActive] = useState(false);
     {/*const showHideClassName = show ? "modal display-block" : "modal display-none";*/}
     const rootRef = React.useRef(null);
     const handleChange = (event, newValue) => {
@@ -38,12 +39,12 @@ const LoginRegisterModal = () => {
                     className="tabs"
                 >
                     <Tab label="Login" value="1" />        
-                    <Tab label="LogOut" value="2" />
+                    <Tab label="Register" value="2" />
                 </Tabs>
                 {panel ? <div>
-                    <p>Tab One</p>
+                    <Register/>
                 </div> : <div>
-                    <p>Tab Two</p>
+                    <Login/>
                 </div>}                
                 </div>
             </Modal>
