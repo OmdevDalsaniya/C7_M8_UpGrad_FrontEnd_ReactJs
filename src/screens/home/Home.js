@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginRegisterModal from "../../common/loginModal/LoginRegisterModal";
 import Header from './../../common/header/Header';
+import './Home.css';
 
 export default function Home(){
 
@@ -13,6 +14,9 @@ export default function Home(){
         { isPopOpen && 
             <LoginRegisterModal ></LoginRegisterModal>
         }
+        <div className="subHeader">
+            <p>UpComing Movies</p>
+        </div>
         </React.Fragment>
     );
 }
