@@ -4,3 +4,44 @@
     text-align: center;
     font-size: 1rem;
 }
+
+.rootNew {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-around !important;
+    overflow-y: hidden !important;
+}
+
+.gridListNew{
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    
+}
+
+.movieGrid{
+    background-color: white;
+    min-height: 250px;
+}
+
+.released{
+    display: flex; 
+    width: 76%;
+    float:left;
+    margin: 16px;
+}
+
+.filterSide{
+    width: auto;
+    float: right;
+    margin: 16px;
+}
+
+.clickGrid{
+    cursor: pointer;
+    min-height: 350px;
+}
+
+.imgClass{
+    height: 100%;
+    width: 100%;
+}

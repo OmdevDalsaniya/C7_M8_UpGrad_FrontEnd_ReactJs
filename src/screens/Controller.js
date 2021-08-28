@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "../screens/home/Home";
 import BookShow from '../screens/bookshow/BookShow';
-import LoginRegister from '../common/loginModal/LoginRegisterModal';
 
 const Controller = () => {
+
+    const baseUrl = "http://localhost:8085/api/v1";
     return(
         <Router>
             <div>
-                <Route exact path="/" render={() => <Home /> } />
+                <Route exact path="/" render={(props) => <Home {...props} /> } />
                 <Route exact path="/BookShow" render={(props) => <BookShow {...props} />} />
-                <Route exact path="/Movie" render={() =><Home/>}/>
+                <Route exact path="/Movie" render={(props) =><Home {...props}/>}/>
             </div>
         </Router>
 

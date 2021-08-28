@@ -11,6 +11,9 @@ const Register = () => {
     const [password, set_password] = useState("")
     const [contactNo, set_contactNo]= useState("")
 
+    // TODO: Send Details to DB to Verify via API
+    // TODO: Update Details of variabel as per response from API
+
     return(
         <React.Fragment>
             <FormControl required className="formControl">
