@@ -53,13 +53,14 @@ const FilterBar = (props) => {
                 <CardContent>
                 <CardHeader className={classes.heading} title="FIND MOVIES BY:"></CardHeader>
                     {/* MOVIE FILTER */}
-                    <FormControl required className="formControl">
-                        <InputLabel id="genre-label">Movie Name</InputLabel>
-                        <TextField id="standard-basic" label="Movie Name" />
+                    <FormControl className="formControl">
+                        <TextField id="standard-basic" labelId="movie-label" value="Movie Name" label="Movie Name"/>
+                    </FormControl>
                     {/* GENRES START */}
+                    <FormControl className="formControl">
                         <InputLabel id="genre-label">Genres</InputLabel>
                         <Select
-                            labelId="Genres"
+                            labelId="genre-label"
                             id="genre-select"
                             value="Genre"
                             onChange={handleGenreChange}
@@ -73,10 +74,12 @@ const FilterBar = (props) => {
                                 label="Twenty"/>
                         </MenuItem>
                         </Select>
+                    </FormControl>
                     {/* ARTISE START */}
+                    <FormControl className="formControl">
                         <InputLabel id="artist-label">Artists</InputLabel>
                         <Select
-                            labelId="Artists"
+                            labelId="artist-label"
                             id="artist-select"
                             value="Artists"
                             onChange={handleArtistChange}
@@ -90,7 +93,9 @@ const FilterBar = (props) => {
                                 label="Twenty"/>
                         </MenuItem>
                         </Select>
+                    </FormControl>
                     {/* RELEASE DATE START PICKER */}
+                    <FormControl className="formControl">
                         <TextField
                                 id="start-date"
                                 label="Release Date Start"
@@ -101,7 +106,9 @@ const FilterBar = (props) => {
                                     shrink: true,
                                 }}
                         />
+                    </FormControl>
                     {/* RELEASE DATE END PICKER */}
+                    <FormControl className="formControl">
                         <TextField
                                 id="end-date"
                                 label="Release Date End"
@@ -112,6 +119,8 @@ const FilterBar = (props) => {
                                     shrink: true,
                                 }}
                         />
+                    </FormControl>
+                    <FormControl required className="formControl">
                     <Button
                         variant="contained"
                         onClick={filterChangeHandler}
