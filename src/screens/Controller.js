@@ -11,7 +11,7 @@ const Controller = () => {
         <Router>
             <div>
                 {/* <Route exact path="/" render={(props) => <Home {...props} /> } /> */}
-                <Route exact path="/" render={(props) => <FilterBar {...props} /> } />
+                <Route exact path="/" render={(props) => <Home {...props} /> } />
                 <Route exact path="/BookShow" render={(props) => <BookShow {...props} />} />
                 <Route exact path="/Movie" render={(props) =><Home {...props}/>}/>
             </div>
