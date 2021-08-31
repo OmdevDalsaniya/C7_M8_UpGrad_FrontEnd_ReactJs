@@ -1,6 +1,6 @@
 .divModal{
     display: flex;
-    align-items: 'center';
+    align-items: center;
     justify-content: center;
     background-color: #fff;
 }
@@ -20,8 +20,18 @@
     background-color: #fff;
     border: '2px solid #000';
     padding: 2px 4px 3px;
+    align-content: center; 
 }
 
 .tabs{
     background-color: #fff;
+}
+
+.tabcontent{
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: auto;
+    display: flex;
 }

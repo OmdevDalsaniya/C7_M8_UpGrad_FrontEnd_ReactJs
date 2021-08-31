@@ -5,12 +5,13 @@ import Header from './../../common/header/Header';
 import { GridListTile, GridList, GridListTileBar } from '@material-ui/core';
 import './Home.css';
 
-export default function Home(){
+export default function Home({history, setMovieDetail}){
     const isLoggedIn = false;
     const [ isPopOpen, setPopOpen ] = useState(false);
     const [ movieList, setMovieList ] = useState([]);
     const [ releasedList, setReleasedList ] = useState([]);
-    const [ upcomingList, setUpcomingList ] = useState([]);    
+    const [ upcomingList, setUpcomingList ] = useState([]);
+       
 
     async function loadmovie() {
         const rawResponse = await fetch("http://localhost:8085/api/v1/movies?page=1&limit=20")
@@ -23,6 +24,12 @@ export default function Home(){
     useEffect(()=>{
         loadmovie();
     },[]);
+
+    const onClickReleasedMovie = (movie) => {
+        console.log(movie);
+        setMovieDetail(movie);
+        history.push("/Movie");
+    }
           
 
     // Use this variable to store the value of incoming request
@@ -35,7 +42,7 @@ export default function Home(){
         <div className="subHeader">
             <p>UpComing Movies</p>
         </div>
-        { console.log(movieList[0]) }
+        {/* console.log(movieList[0]) */}
         { console.log(releasedList) }
         { console.log(upcomingList) }
 
@@ -75,6 +82,7 @@ export default function Home(){
                         <GridListTile key={item.id}
                             title={item.title}
                             className="movieGrid clickGrid"
+                            onClick={() => onClickReleasedMovie(item)}
                         >
                             <img src={item.poster_url} alt={item.title} className="imgClass"/>
                             <GridListTileBar title={item.title} subtitle={item.release_date}/>

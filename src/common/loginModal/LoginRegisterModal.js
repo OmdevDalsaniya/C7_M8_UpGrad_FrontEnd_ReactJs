@@ -9,12 +9,11 @@ import Register from "../Auth/Register";
 const LoginRegisterModal = () => {
 
     const [value, setValue] = useState(1);
-    const [panel, setActive] = useState(false);
     {/*const showHideClassName = show ? "modal display-block" : "modal display-none";*/}
     const rootRef = React.useRef(null);
-    const handleChange = (event, newValue) => {
+    const handleChange = (newValue) => {
+        console.log(newValue);
         setValue(newValue);
-        setActive(!panel);
     };
 
 
@@ -35,18 +34,17 @@ const LoginRegisterModal = () => {
                     value={value}
                     indicatorColor="primary"
                     textColor="primary"
-                    onChange={handleChange}
                     className="tabs"
                 >
-                    <Tab label="Login" value="1" />        
-                    <Tab label="Register" value="2" />
+                    <Tab label="Login" value={1} onClick={() => handleChange(1)}/>        
+                    <Tab label="Register" value={2} onClick={() => handleChange(2)}/>
                 </Tabs>
-                {panel ? <div>
-                    <Register/>
-                </div> : <div>
+                {value===1 ? <div className="tabcontent">
                     <Login/>
+                </div> : <div className="tabcontent">
+                    <Register/>
                 </div>}                
-                </div>
+            </div>
             </Modal>
         </div>
     );

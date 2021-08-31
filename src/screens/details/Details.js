@@ -4,9 +4,19 @@ import Header from './../../common/header/Header';
 import YouTube from 'react-youtube';
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { GridListTile, GridList, GridListTileBar, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import './Details.css';
 
-const Details = () => {
+const styles = (theme) => ({
+    set : {
+        fill: "yellow",
+    },
+});
+
+const Details = ({movieDetail}, props) => {
+    const { classes } = props;
     const isLoggedIn = false;
     const [ poster_url, setPoster_Url ] = useState("");
     const [ poster_title, setPoster_title ] = useState("");
@@ -16,6 +26,7 @@ const Details = () => {
     const loadmovie = () => {
         setPoster_Url("https://upload.wikimedia.org/wikipedia/en/c/cd/Shahid_Poster_%282013%29.jpg"),
         setPoster_title("Shahid")
+        console.log(movieDetail);
     }
 
     useEffect(()=>{
@@ -29,7 +40,9 @@ const Details = () => {
             <LoginRegisterModal ></LoginRegisterModal>
         }
         <div className="backToHome">
-            <Typography className="back">&#60; Back to Home</Typography>
+            <Link to="/">
+                <Typography className="back">&#60; Back to Home</Typography>
+            </Link>
         </div>
         <div className="parent">
             <div className="first">
@@ -58,6 +71,22 @@ const Details = () => {
             <div className="third">
                 <div className="part">
                 <StarBorderIcon
+                    name="half-rating-read"
+                    
+                    style = {{
+                        fill: "yellow",
+                    }}
+                />
+                <StarBorderIcon
+                    name="half-rating-read" 
+                />
+                <StarBorderIcon
+                    name="half-rating-read" 
+                />
+                <StarBorderIcon
+                    name="half-rating-read" 
+                />
+                <StarBorderIcon
                     name="half-rating-read" 
                 />
                 </div>
@@ -76,6 +105,10 @@ const Details = () => {
         </div>
         </React.Fragment>
     );
+}
+
+Details.prototype = {
+    classes: PropTypes.object.isRequired,
 }
 
 export default Details;
