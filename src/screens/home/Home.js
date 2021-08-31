@@ -92,7 +92,7 @@ export default function Home({history, setMovieDetail}){
                 </GridList>
             </div>
             <div className = "filterSide">
-                <FilterBar />
+                <FilterBar history={history} {...props} setMovieDetail={setMovieDetail}/>
             </div>
         </div>
         </React.Fragment>
