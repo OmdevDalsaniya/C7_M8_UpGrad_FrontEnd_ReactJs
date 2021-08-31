@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "../screens/home/Home";
 import BookShow from '../screens/bookshow/BookShow';
+import Details from '../screens/details/Details';
 import FilterBar from "../common/FilterBar/FilterBar";
 
 const Controller = () => {
@@ -11,7 +12,7 @@ const Controller = () => {
         <Router>
             <div>
                 {/* <Route exact path="/" render={(props) => <Home {...props} /> } /> */}
-                <Route exact path="/" render={(props) => <Home {...props} /> } />
+                <Route exact path="/" render={(props) => <Details {...props} /> } />
                 <Route exact path="/BookShow" render={(props) => <BookShow {...props} />} />
                 <Route exact path="/Movie" render={(props) =><Home {...props}/>}/>
             </div>

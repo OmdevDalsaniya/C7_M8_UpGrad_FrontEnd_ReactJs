@@ -23,17 +23,21 @@
     min-height: 250px;
 }
 
-.released{
-    display: flex; 
-    width: 76%;
+.released{ 
+    width: 76% !important;
+    height: 100%;
+    display: flex;
     float:left;
-    margin: 16px;
+    margin: 8px;
 }
 
 .filterSide{
-    width: auto;
+    width: auto !important;
+    height: 100%;
+    display: flex;
     float: right;
-    margin: 16px;
+    margin: 8px;
+    position: relative;
 }
 
 .clickGrid{

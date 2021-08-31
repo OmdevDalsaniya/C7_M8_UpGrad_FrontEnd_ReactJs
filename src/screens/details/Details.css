@@ -1,0 +1,35 @@
+.backToHome{
+    margin-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.parent{
+    display: flex;
+}
+
+.first{
+    width: 20%;
+    height: 100%;
+    margin-left: 24px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    display: flex;
+    float: left;
+}
+
+.second{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.third{
+    width: 20%;
+    display: flex;
+    margin: auto;
+}
