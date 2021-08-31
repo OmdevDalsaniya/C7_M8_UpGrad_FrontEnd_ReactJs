@@ -6,7 +6,7 @@ import './LoginRegisterModal.css';
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 
-const LoginRegisterModal = () => {
+const LoginRegisterModal = ({history, handlePopUp, isLoggedIn}, props) => {
 
     const [value, setValue] = useState(1);
     {/*const showHideClassName = show ? "modal display-block" : "modal display-none";*/}
@@ -15,6 +15,28 @@ const LoginRegisterModal = () => {
         console.log(newValue);
         setValue(newValue);
     };
+
+    const [ loginPayload, setLoginPayload ] = useState();
+    const [ signupPayload, setSignUpPayload ] = useState(
+        {
+            "email_address": "",
+            "first_name": "",
+            "last_name": "",
+            "mobile_number": "",
+            "password": ""
+        }
+    );
+
+    async function registerUser(){
+        const rawResponse = await fetch("http://localhost:8085/api/v1/signup", {
+            method: "POST",
+            body: signupPayload,
+        });
+        const data = await rawResponse.json();
+        console.log(data);
+    }
+
+
 
 
     return(        
@@ -42,7 +64,7 @@ const LoginRegisterModal = () => {
                 {value===1 ? <div className="tabcontent">
                     <Login/>
                 </div> : <div className="tabcontent">
-                    <Register/>
+                    <Register registerUser={registerUser} setSignUpPayload={setSignUpPayload}/>
                 </div>}                
             </div>
             </Modal>

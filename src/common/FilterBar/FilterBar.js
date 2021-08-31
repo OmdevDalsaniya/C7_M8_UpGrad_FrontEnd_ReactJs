@@ -30,23 +30,53 @@ const styles = (theme) => ({
 const FilterBar = (props) => {
 
     const { classes } = props;
-    const [ movie, setMovie ] = useState("");
-    const [ genere, setGenere ] = useState("");
-    const [ artist, setArtist ] = useState("");
+    const [ genereList, setGenereList ] = useState([]);
+    const [ artistList, setArtistList ] = useState([]);
+
+    {/**TO be filtered values */}
+    const [ movie, setMovie ] = useState("");    
+    const [ genre, setGenre ] = useState([]);
+    const [ artist, setArtist ] = useState([]);
     const [ releaseDate, setReleaseDate ] = useState("");
 
-    const value="Temp";
-
-    const handleGenreChange = () => {
-        console.log("Handle Genre Change");
+    async function loadGeneres() {
+        const rawResponse = await fetch("http://localhost:8085/api/v1/genres")
+        const data = await rawResponse.json();
+        console.log(data);
+        setGenereList(data.genres);
     }
     
-    const handleCheckChange = () => {
-        console.log("Handle Check Change");
+    async function loadArtist() {
+        const rawResponse = await fetch("http://localhost:8085/api/v1/artists?page=1&limit=30")
+        const data = await rawResponse.json();
+        console.log(data);
+        setArtistList(data.artists);
+    }   
+
+    useEffect(()=>{
+        loadGeneres();
+        loadArtist();
+    },[]);    
+
+    const handleGenreChange = (e) => {
+        console.log(e.target.value);
+        const genereArray = genre;
+        genereArray.push(e.target.value);
+        setGenre(genereArray);
+        console.log(genre);
+    }
+    
+    const handleCheckChange = (e) => {
+        e.target.checked = true;
+        
     }
 
-    const handleArtistChange = () => {
-        console.log("Artist Check Change");
+    const handleArtistChange = (e) => {
+        console.log(e.target.value);
+        const artistTempArray = artist;
+        artistTempArray.push(e.target.value);
+        setArtist(artistTempArray);
+        console.log(artist);
     }
 
     const filterChangeHandler = () => {
@@ -64,7 +94,16 @@ const FilterBar = (props) => {
                     {/* MOVIE FILTER */}
                     <div className="filterFormat">
                         <FormControl className="formControl">
-                            <TextField id="standard-basic" labelId="movie-label" value="Movie Name" label="Movie Name"/>
+                            <TextField 
+                                id="standard-basic"
+                                labelId="movie-label"
+                                label="Movie Name"
+                                value={movie}
+                                onInput={e => {
+                                    setMovie(e.target.value)
+                                    console.log(movie)
+                                }}
+                            />
                         </FormControl>
                     </div>
                     {/* GENRES START */}
@@ -74,19 +113,17 @@ const FilterBar = (props) => {
                             <Select
                                 labelId="genre-label"
                                 id="genre-select"
-                                value="Genre"
+                                value={genre}
                                 onChange={handleGenreChange}
                                 label="Genres"
                                 width="100%"
                             >
-                            <MenuItem value={10}>
-                                <FormControlLabel control={<Checkbox checked="10" onChange={handleCheckChange} name="Ten" />}
-                                    label="Ten"/>
-                            </MenuItem>
-                            <MenuItem value={20}>
-                                <FormControlLabel control={<Checkbox checked="20" onChange={handleCheckChange} name="Twenty" />}
-                                    label="Twenty"/>
-                            </MenuItem>
+                            {
+                                genereList.map((item) => (<MenuItem value={item.genre}>
+                                    <FormControlLabel control={<Checkbox checked="false" name={item.genre} onClick={handleCheckChange}/>}
+                                        label={item.genre} id={item.id}/>
+                                </MenuItem>))
+                            }
                             </Select>
                         </FormControl>
                     </div>
@@ -100,14 +137,14 @@ const FilterBar = (props) => {
                                 value="Artists"
                                 onChange={handleArtistChange}
                             >
-                            <MenuItem value={10}>
-                                <FormControlLabel control={<Checkbox checked="10" onChange={handleCheckChange} name="Ten" />}
-                                    label="Ten"/>
-                            </MenuItem>
-                            <MenuItem value={20}>
-                                <FormControlLabel control={<Checkbox checked="20" onChange={handleCheckChange} name="Twenty" />}
-                                    label="Twenty"/>
-                            </MenuItem>
+                            {
+                                artistList.map((item) => (
+                                    <MenuItem value={`${item.first_name} ${item.last_name}`}>
+                                        <FormControlLabel control={<Checkbox name={`${item.first_name} ${item.last_name}`} />}
+                                            label={`${item.first_name} ${item.last_name}`} id={item.id}/>
+                                    </MenuItem>
+                                ))   
+                            }
                             </Select>
                         </FormControl>
                     </div>

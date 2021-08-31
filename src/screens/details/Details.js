@@ -141,7 +141,7 @@ const Details = ({movieDetail}, props) => {
                                     >
                                         <img src={item.profile_url} alt={item.first_name} className="imgClass"/>
                                         <GridListTileBar 
-                                            title={item.first_name}
+                                            title={`${item.first_name} ${item.last_name}`}
                                         />
                                     </GridListTile>
                                 ))

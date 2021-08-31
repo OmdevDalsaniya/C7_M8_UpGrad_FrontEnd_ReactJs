@@ -5,8 +5,7 @@ import Header from './../../common/header/Header';
 import { GridListTile, GridList, GridListTileBar } from '@material-ui/core';
 import './Home.css';
 
-export default function Home({history, setMovieDetail}){
-    const isLoggedIn = false;
+export default function Home({history, setMovieDetail, isLoggedIn, setLoggedIn}, props){
     const [ isPopOpen, setPopOpen ] = useState(false);
     const [ movieList, setMovieList ] = useState([]);
     const [ releasedList, setReleasedList ] = useState([]);
@@ -35,17 +34,13 @@ export default function Home({history, setMovieDetail}){
     // Use this variable to store the value of incoming request
     return(
         <React.Fragment>
-        <Header auth={isLoggedIn} handlePopUp={setPopOpen}></Header>
-        { isPopOpen && 
-            <LoginRegisterModal ></LoginRegisterModal>
+        <Header history={history} {...props} handlePopUp={setPopOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></Header>
+        { isPopOpen && !isLoggedIn &&
+            <LoginRegisterModal history={history} {...props} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></LoginRegisterModal>
         }
         <div className="subHeader">
             <p>UpComing Movies</p>
         </div>
-        {/* console.log(movieList[0]) */}
-        { console.log(releasedList) }
-        { console.log(upcomingList) }
-
         {/* UPCOMING MOVIE DIV */}
         <div className="rootNew">
             <GridList

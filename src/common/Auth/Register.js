@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './Auth.css';
 
-const Register = () => {
+const Register = ({registerUser, setSignUpPayload}) => {
     const [firstName, set_firstName] = useState("")
     const [lastName, set_lastName] = useState("")
     const [email, set_email] = useState("")
@@ -13,6 +13,18 @@ const Register = () => {
 
     // TODO: Send Details to DB to Verify via API
     // TODO: Update Details of variabel as per response from API
+    const handleSignUp = () => {
+        setSignUpPayload = {
+            "email_address": {email},
+            "first_name": {firstName},
+            "last_name": {lastName},
+            "mobile_number": {contactNo},
+            "password": {password}
+        }
+        registerUser();
+    }
+
+    
 
     return(
         <React.Fragment>
@@ -85,6 +97,7 @@ const Register = () => {
                 fullWidth
                 variant="contained"
                 color="secondary"
+                onClick={handleSignUp}
             >
                 Register
             </Button>
