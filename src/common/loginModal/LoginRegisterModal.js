@@ -6,38 +6,14 @@ import './LoginRegisterModal.css';
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 
-const LoginRegisterModal = ({history, handlePopUp, isLoggedIn}, props) => {
+const LoginRegisterModal = ({history, handlePopUp, isLoggedIn, setOpen}, props) => {
 
     const [value, setValue] = useState(1);
     {/*const showHideClassName = show ? "modal display-block" : "modal display-none";*/}
     const rootRef = React.useRef(null);
     const handleChange = (newValue) => {
-        console.log(newValue);
         setValue(newValue);
-    };
-
-    const [ loginPayload, setLoginPayload ] = useState();
-    const [ signupPayload, setSignUpPayload ] = useState(
-        {
-            "email_address": "",
-            "first_name": "",
-            "last_name": "",
-            "mobile_number": "",
-            "password": ""
-        }
-    );
-
-    async function registerUser(){
-        const rawResponse = await fetch("http://localhost:8085/api/v1/signup", {
-            method: "POST",
-            body: signupPayload,
-        });
-        const data = await rawResponse.json();
-        console.log(data);
-    }
-
-
-
+    };   
 
     return(        
         <div className="divModal">
@@ -61,10 +37,10 @@ const LoginRegisterModal = ({history, handlePopUp, isLoggedIn}, props) => {
                     <Tab label="Login" value={1} onClick={() => handleChange(1)}/>        
                     <Tab label="Register" value={2} onClick={() => handleChange(2)}/>
                 </Tabs>
-                {value===1 ? <div className="tabcontent">
-                    <Login/>
+                {value===1 && isLoggedIn==false ? <div className="tabcontent">
+                    <Login setOpen={setOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
                 </div> : <div className="tabcontent">
-                    <Register registerUser={registerUser} setSignUpPayload={setSignUpPayload}/>
+                    <Register setOpen={setOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
                 </div>}                
             </div>
             </Modal>

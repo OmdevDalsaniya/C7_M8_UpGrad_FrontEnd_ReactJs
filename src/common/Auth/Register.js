@@ -4,27 +4,50 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './Auth.css';
 
-const Register = ({registerUser, setSignUpPayload}) => {
-    const [firstName, set_firstName] = useState("")
-    const [lastName, set_lastName] = useState("")
-    const [email, set_email] = useState("")
-    const [password, set_password] = useState("")
-    const [contactNo, set_contactNo]= useState("")
+const Register = ({setOpen}) => {
 
-    // TODO: Send Details to DB to Verify via API
-    // TODO: Update Details of variabel as per response from API
-    const handleSignUp = () => {
-        setSignUpPayload = {
-            "email_address": {email},
-            "first_name": {firstName},
-            "last_name": {lastName},
-            "mobile_number": {contactNo},
-            "password": {password}
+    const [ signupPayload, setSignUpPayload ] = useState(
+        {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            mobileNumber: "",
         }
-        registerUser();
+    );
+
+    const{ firstName, lastName, email, password, mobileNumber} = signupPayload;
+
+    const inputChangeHandler = (e) => {
+        const temp = signupPayload;
+        temp[e.target.name] = e.target.value;
+        setSignUpPayload({...temp});
     }
 
+    const registerUser = () => {
+        console.log(signupPayload);
+        
+        fetch("http://localhost:8085/api/v1/signup", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify(signupPayload),
+        }).then((response) => {
+              console.log(response);
+              response.json();
+        }).then((data) => {
+            console.log(data);
+        });
     
+        setOpen(false);
+      };
+
+    const handleSignUp = () => {
+        registerUser();
+    }    
 
     return(
         <React.Fragment>
@@ -40,7 +63,7 @@ const Register = ({registerUser, setSignUpPayload}) => {
                 autoComplete="firstName"
                 autoFocus 
                 value={firstName}
-                onInput={e => {set_firstName(e.target.value)}}
+                onChange={inputChangeHandler}
             />
             <TextField 
                 variant="outlined"
@@ -53,7 +76,7 @@ const Register = ({registerUser, setSignUpPayload}) => {
                 autoComplete="lastName"
                 autoFocus 
                 value={lastName}
-                onInput={e => {set_lastName(e.target.value)}}
+                onChange={inputChangeHandler}
             />
             <TextField 
                 variant="outlined"
@@ -67,7 +90,7 @@ const Register = ({registerUser, setSignUpPayload}) => {
                 type="email"
                 autoFocus 
                 value={email}
-                onInput={e => {set_email(e.target.value)}}
+                onChange={inputChangeHandler}
             />
             <TextField
                 variant="outlined"
@@ -79,18 +102,18 @@ const Register = ({registerUser, setSignUpPayload}) => {
                 type="password"
                 id="password"
                 value={password}
-                onInput={e => set_password(e.target.value)}
+                onChange={inputChangeHandler}
             />
             <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                name="contactNo"
+                name="mobileNumber"
                 label="Contact No"
                 id="contactNo"
-                value={contactNo}
-                onInput={e => set_contactNo(e.target.value)}
+                value={mobileNumber}
+                onChange={inputChangeHandler}
             />
             <Button
                 type="submit"
