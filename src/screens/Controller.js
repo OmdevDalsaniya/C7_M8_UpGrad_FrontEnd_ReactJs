@@ -16,9 +16,9 @@ const Controller = () => {
         <Router>
             <div>
                 {/* <Route exact path="/" render={(props) => <Home {...props} /> } /> */}
-                <Route exact path="/" render={({history}, props) => <Home history={history} {...props} isLoggedIn={isLoggedIn} setLoggedIn={isLoggedIn}/> } />
+                <Route exact path="/" render={({history}, props) => <Home history={history} {...props} setMovieDetail={setMovieDetail} isLoggedIn={isLoggedIn} setLoggedIn={isLoggedIn}/> } />
                 <Route exact path="/BookShow" render={({history}, props) => <BookShow history={history} {...props} />} />
-                <Route exact path="/Movie" render={(props) =><Details {...props} movieDetail={movieDetail}/>}/>
+                <Route exact path="/Movie" render={(props) =><Details {...props} movieDetail={movieDetail} />}/>
             </div>
         </Router>
 

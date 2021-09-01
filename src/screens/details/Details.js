@@ -55,7 +55,7 @@ const Details = ({movieDetail}, props) => {
 
         return(
             <React.Fragment>
-            <Header auth={isLoggedIn} handlePopUp={setPopOpen}></Header>
+            <Header auth={isLoggedIn} handlePopUp={setPopOpen} bookShow={true} ></Header>
             { isPopOpen && 
                 <LoginRegisterModal ></LoginRegisterModal>
             }

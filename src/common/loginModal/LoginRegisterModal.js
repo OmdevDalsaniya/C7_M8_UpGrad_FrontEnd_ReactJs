@@ -6,7 +6,7 @@ import './LoginRegisterModal.css';
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 
-const LoginRegisterModal = ({history, handlePopUp, isLoggedIn, setOpen}, props) => {
+const LoginRegisterModal = ({history, handlePopUp, isLoggedIn, setLoggedIn, setOpen}, props) => {
 
     const [value, setValue] = useState(1);
     {/*const showHideClassName = show ? "modal display-block" : "modal display-none";*/}

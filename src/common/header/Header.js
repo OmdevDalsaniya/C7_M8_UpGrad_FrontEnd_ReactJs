@@ -4,7 +4,7 @@ import logo from '../../assets/logo.svg';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-const Header = ({history, setOpen, isLoggedIn}, props) => {
+const Header = ({history, setOpen, isLoggedIn, bookShow}, props) => {
     return(
         <div id="header">
             <img className="logo" src={logo} alt="Logo"/>
@@ -13,9 +13,11 @@ const Header = ({history, setOpen, isLoggedIn}, props) => {
                 :
                 <Button className="NavButton" variant="contained" onClick={()=> setOpen(true)}>Log In</Button>
             }
+            {(bookShow) &&
             <Link to="/BookShow">
                 <Button className="NavButton" variant="contained" color="primary" onClick="onClickHandler">Book Show</Button>
             </Link>
+            }
         </div>
     );
 }

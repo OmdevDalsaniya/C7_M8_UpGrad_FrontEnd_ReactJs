@@ -10,11 +10,15 @@
 .logo {
     background-color: #ff7f7f;
     height: 35px;
-    animation: rotation 8s;
+    animation: logo-spin 8s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: normal;
     float: left;
+}
+
+@keyframes logo {
+    from { transform: scaleX(-1); }
 }
 
 .NavButton {

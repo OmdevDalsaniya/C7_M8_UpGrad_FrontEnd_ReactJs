@@ -34,7 +34,7 @@ export default function Home({history, setMovieDetail, isLoggedIn, setLoggedIn},
     // Use this variable to store the value of incoming request
     return(
         <React.Fragment>
-        <Header history={history} {...props} setOpen={setOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></Header>
+        <Header history={history} {...props} setOpen={setOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} bookShow={false}></Header>
         { isPopOpen && !isLoggedIn &&
             <LoginRegisterModal history={history} {...props} setOpen={setOpen} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}></LoginRegisterModal>
         }
